@@ -2,6 +2,14 @@
 -- reach protective gear - female voice comes in, harp ends; they take off clothes over protective gear, female voice fades out
 -- slience while flipping; then silence
 
+vocals 1 0 1 -- hush volume0 volume1
+iglooBeat 0 0 1 1 -- hush beat0 beat1 beat2
+drums 0 1 1 -- hush lowOctave highOctave
+bigBeat 0 1 2 0.185 -- hush gain slow degrade ***ONLY ONE SOUND***
+glitch 0 1 1 1 -- hush glitch0 glitch1 glitch2
+sophie 0 0 0 0.8 -- hush vol0 vol1 vol2
+chordProg 1 0 0 -- hush prog-0-1-2 restart
+climax 1 0 1 0 0 -- hush vol0 vol1 vol2 restart
 
 do {
   vocals 0 (cF 0 "vocal0") (cF 0 "vocal1"); -- hush volume0 volume1
