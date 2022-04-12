@@ -438,9 +438,9 @@ public void key(int x, int y, int s) {
 
       float vol = 1.0-(float(y)/7.0);
 
-      println(vol);
+      println(sqrt(vol));
 
-      myMessage.add(vol); /* add an int to the osc message */
+      myMessage.add(sqrt(vol)); /* add an int to the osc message */
 
       /* send the message */
       oscP5.send(myMessage, tidalCycles);
@@ -459,7 +459,7 @@ public void key(int x, int y, int s) {
 
       println(vol);
 
-      myMessage.add(vol); /* add an int to the osc message */
+      myMessage.add(sqrt(vol)); /* add an int to the osc message */
 
       /* send the message */
       oscP5.send(myMessage, tidalCycles);
