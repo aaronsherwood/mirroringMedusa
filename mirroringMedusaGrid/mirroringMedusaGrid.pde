@@ -55,7 +55,10 @@ public void draw() {
           led[y][x] = 4 + onOff[y][x]*11;
         if (x==6 || x==7)
           led[y][x] = 4 + onOff[y][x]*11;
-        if (x>=9 && x<=12 && y<2){
+        if (x>=9 && x<=12 && y==0){
+          led[y][x] = 4 + onOff[y][x]*11;
+        }
+        if (x>=9 && x<=11 && y==1){
           led[y][x] = 4 + onOff[y][x]*11;
         }
       }
@@ -417,7 +420,10 @@ public void key(int x, int y, int s) {
       onOff[y][x] ^= 1;
     if (x<3 && y==7)
       onOff[y][x] ^= 1;
-    if (x>=9 && x<=12 && y<2){
+    if (x>=9 && x<=12 && y==0){
+      onOff[y][x] ^= 1;
+    }
+    if (x>=9 && x<=11 && y==1){
       onOff[y][x] ^= 1;
     }
 
