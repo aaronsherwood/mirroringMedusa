@@ -37,13 +37,13 @@ public void draw() {
     //// display steps
     for (int x=0; x<16; x++) {
       for (int y=0; y<8; y++) {
-        if (x<2 && y==0 || ( x==4 && y==0))
+        if (x<3 && y==0 || ( x==4 && y==0))
           led[y][x] = 4 + onOff[y][x]*11;
         if (x<3 && y==1)
           led[y][x] = 4 + onOff[y][x]*11;
         if (x<2 && y==2)
           led[y][x] = 4 + onOff[y][x]*11;
-        if (x<1 && y==3)
+        if (x<2 && y==3)
           led[y][x] = 4 + onOff[y][x]*11;
         if (x<3 && y==4)
           led[y][x] = 4 + onOff[y][x]*11;
@@ -55,6 +55,9 @@ public void draw() {
           led[y][x] = 4 + onOff[y][x]*11;
         if (x==6 || x==7)
           led[y][x] = 4 + onOff[y][x]*11;
+        if (x>=9 && x<=12 && y<2){
+          led[y][x] = 4 + onOff[y][x]*11;
+        }
       }
     }
 
@@ -84,6 +87,15 @@ public void key(int x, int y, int s) {
     {
       OscMessage myMessage = new OscMessage("/ctrl");
       myMessage.add("vocal1");
+
+      myMessage.add(float(0)); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("vocal2");
 
       myMessage.add(float(0)); /* add an int to the osc message */
 
@@ -146,6 +158,16 @@ public void key(int x, int y, int s) {
     {
       OscMessage myMessage = new OscMessage("/ctrl");
       myMessage.add("bigBeat");
+
+      myMessage.add(float(0)); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("complex");
 
       myMessage.add(float(0)); /* add an int to the osc message */
 
@@ -276,6 +298,77 @@ public void key(int x, int y, int s) {
       /* send the message */
       oscP5.send(myMessage, tidalCycles);
     }
+     //more drums
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums0");
+
+      myMessage.add((0)); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums1");
+
+      myMessage.add((0)); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums2");
+
+      myMessage.add((0)); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums3");
+
+      myMessage.add((0)); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more0");
+
+      myMessage.add(0); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more1");
+
+      myMessage.add(0); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more2");
+
+      myMessage.add(0); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
     {
       for (int i=0; i<8; i++) {
         onOff[i][x]=0;
@@ -308,13 +401,13 @@ public void key(int x, int y, int s) {
 
   // toggle steps
   if (s==1) {
-    if (x<2 && y==0)
+    if (x<3 && y==0)
       onOff[y][x] ^= 1;
     if (x<3 && y==1)
       onOff[y][x] ^= 1;
     if (x<2 && y==2)
       onOff[y][x] ^= 1;
-    if (x<1 && y==3)
+    if (x<2 && y==3)
       onOff[y][x] ^= 1;
     if (x<3 && y==4)
       onOff[y][x] ^= 1;
@@ -324,6 +417,9 @@ public void key(int x, int y, int s) {
       onOff[y][x] ^= 1;
     if (x<3 && y==7)
       onOff[y][x] ^= 1;
+    if (x>=9 && x<=12 && y<2){
+      onOff[y][x] ^= 1;
+    }
 
     if (x==6) {
       onOff[y][x] ^= 1;
@@ -379,6 +475,16 @@ public void key(int x, int y, int s) {
     if (y==0 && x==1) {
       OscMessage myMessage = new OscMessage("/ctrl");
       myMessage.add("vocal1");
+
+      myMessage.add(float(onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    if (y==0 && x==2) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("vocal2");
 
       myMessage.add(float(onOff[y][x])); /* add an int to the osc message */
 
@@ -443,6 +549,16 @@ public void key(int x, int y, int s) {
     if (y==3 && x==0) {
       OscMessage myMessage = new OscMessage("/ctrl");
       myMessage.add("bigBeat");
+
+      myMessage.add(float(onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    if (y==3 && x==1) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("complex");
 
       myMessage.add(float(onOff[y][x])); /* add an int to the osc message */
 
@@ -567,6 +683,78 @@ public void key(int x, int y, int s) {
     if (y==7 && x==2) {
       OscMessage myMessage = new OscMessage("/ctrl");
       myMessage.add("climax2");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    //more drums
+    if (y==0 && x==9) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums0");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    if (y==0 && x==10) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums1");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    if (y==0 && x==11) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums2");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    if (y==0 && x==12) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("moreDrums3");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    
+    //morePerc
+    if (y==1 && x==9) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more0");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    if (y==1 && x==10) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more1");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    if (y==1 && x==11) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more2");
 
       myMessage.add((onOff[y][x])); /* add an int to the osc message */
 

@@ -2,24 +2,48 @@
 -- reach protective gear - female voice comes in, harp ends; they take off clothes over protective gear, female voice fades out
 -- slience while flipping; then silence
 
-vocals 1 0 1 -- hush volume0 volume1
+-- intro 5 min - gormaduli
+-- protective gear - voice 2 min
+-- turning  voice / drum alateration 2 min
+-- mirroring spinal shape build up tension - building into jungle with drums and voice
+-- can alterante between low drum and high drum 6 min
+
+-- 9 min solos -------
+-- solos first with A section, others come in go to b section with less energy
+
+-- kiori solo lift happen - igloo and drums
+-- concetta solo lift happen - sophie
+-- marwen  lift happen - big beat and all
+
+-- closing 5 min then 1 min - c section
+
+hush
+
+vocals 0 1 0 1 -- hush volume0 volume1
 iglooBeat 0 0 1 1 -- hush beat0 beat1 beat2
 drums 0 1 1 -- hush lowOctave highOctave
 bigBeat 0 1 2 0.185 -- hush gain slow degrade ***ONLY ONE SOUND***
 glitch 0 1 1 1 -- hush glitch0 glitch1 glitch2
 sophie 0 0 0 0.8 -- hush vol0 vol1 vol2
 chordProg 1 0 0 -- hush prog-0-1-2 restart
-climax 1 0 1 0 0 -- hush vol0 vol1 vol2 restart
+climax 0 1 0 1 0 -- hush vol0 vol1 vol2 restart
+moreDrums 1 0 0 0
+morePerc 1 0 0
+
+p "vocals1" $ loopAt 4 $ chop 32 $ s "IGLOOGHOST_vocals:18" -- # delayIn  # orbit 0
 
 do {
-  vocals 0 (cF 0 "vocal0") (cF 0 "vocal1"); -- hush volume0 volume1
+  vocals 0 (cF 0 "vocal0") (cF 0 "vocal1") (cF 0 "vocal2"); -- hush volume0 volume1
   iglooBeat 0 (cF 0 "igloo0") (cF 0 "igloo1") (cF 0 "igloo2");  -- hush beat0 beat1 beat2
   drums 0 (cF 0 "drums0") (cF 0 "drums1"); -- hush lowOctave highOctave
   bigBeat 0 (cF 0 "bigBeat") 2 0.15; -- hush gain slow degrade ***ONLY ONE SOUND***
+  p "complex" $ whenmod 24 16 (# speed (slow 2 (range 0.5 4 square))) $ s "[808bd:2(7,16)?, ~ <feelfx:5 dr_few:1> ~ <dr_few:0 dr_few:0 dr_few:0 dr_few:1*9?>, realclaps:(5,8)?, 808:1(11,16)]" # speed (slow 2 (range 0.5 4 saw)) # gain ((range 0.6 0.925 rand)* (cF 0 "complex")*0.9) # krush 50 # room 0.3 # orbit 9;
   glitch 0 (cF 0 "glitch0") (cF 0 "glitch1") (cF 0 "glitch2"); -- hush glitch0 glitch1 glitch2
   sophie 0 (cF 0 "sophie0") (cF 0 "sophie1") (cF 0 "sophie2"); -- hush vol0 vol1 vol2
   chordProg (cF 0 "chords0") (cF 0 "chords1") (cF 0 "chords2");  -- hush prog-0-1-2
   climax 0 (cF 0 "climax0") (cF 0 "climax1") (cF 0 "climax2") 0; -- hush vol0 vol1 vol2 restart
+  moreDrums (cF 0 "moreDrums0") (cF 0 "moreDrums1") (cF 0 "moreDrums2") (cF 0 "moreDrums3");
+  morePerc (cF 0 "more0") (cF 0 "more1") (cF 0 "more2");
   thisLove (cF 0 "thisLove");
   gormaduli;
 }
@@ -41,17 +65,18 @@ thisLove zero = do
   xfadeIn "thisLove2" 8 $ jux (rev) $ slow 8 $ striate' 64 (1/4) $ sound "44comp:36"  # room "0.9" # size "0.9" # speed "0.5" # slow 4 ( gain (zero)) # up "-4" -- # up "5"
 chordProg gain0 gain1 gain2 =
   do
-    p "chords0" $ loopAt 32 $ chop 32 $ s "44comp:32" # gain (1*gain0) # room 0.5  # orbit 6 -- # nudge "-0.027"
-    p "chords1" $ loopAt 16 $ chop 32 $ s "44comp:33" # gain (1*gain1) # room 0.5  # orbit 6 -- # krush 1
+    p "chords0" $ loopAt 32 $ chop 128 $ s "44comp:32" # gain (1*gain0) # room 0.5  # orbit 6 -- # nudge "-0.027"
+    p "chords1" $ loopAt 16 $ chop 64 $ s "44comp:33" # gain (1*gain1) # room 0.5  # orbit 6 -- # krush 1
     p "chords2" $ loopAt 8 $ chop 32 $ s "44comp:34" # gain (1*gain2) # room 0.5  # orbit 6
-vocals stopAll mainVocal glitchVocal =
+vocals stopAll mainVocal glitchVocal glitchVocal2 =
   do
     if stopAll == 1
       then do
         hush
     else return ()
     p "vocals0" $ loopAt 2 $ chop 32 $ s "IGLOOGHOST_vocals:18" # delayIn # gain mainVocal # orbit 0
-    p "vocals1" $ loopAt 4 $ chop 32 $ s "IGLOOGHOST_vocals:17" # delayIn # gain glitchVocal # orbit 0 --17 is 5 16 is 1
+    p "vocals1" $ loopAt 4 $ chop 32 $ s "IGLOOGHOST_vocals:17" # delayIn # gain (0.8*glitchVocal) # orbit 0 --17 is 5 16 is 1
+    p "vocals2" $ loopAt 8 $ chop 32 $ s "IGLOOGHOST_vocals:16" # delayIn # gain (0.8*glitchVocal2) # orbit 0
 iglooBeat stopAll vol0 vol1 vol2 =
   do
     if stopAll == 1
@@ -115,3 +140,14 @@ climax stopAll zero one two restart =
         p "melody" $ qtrigger "melody" $ loopAt 32 $ chop 32 $ s "44comp:24" # gain (1.3*two) # room 0.5 # orbit 7
     else do
       p "melody" $ loopAt 32 $ chop 32 $ s "44comp:24" # gain (1.3*two) # room 0.5 # orbit 7
+moreDrums zero one two three =
+  do
+    p "moreDrums0" $ density 2 $ brak $ sound ("glitch2:0 yeah:3? glitch:4 glitch:1") # room "0.15" # size "0.1" # speed "0.8" # (gain (1.1*zero)) # orbit 8
+    p "moreDrums1" $ density 0.5 $ every 4 (# speed "0.95") $ "<0 1 0.5 0.125>" <~ sound "[808bd:3][808bd:7*2?][808bd:0*2?][808bd:5*2?]" # gain ((range 0.7 1.2 (rand))*one) # shape "0.9" # room "0.2" # speed "1.95" # up "-5" # orbit 8
+    p "moreDrums2" $ every 4 (density 2) $ sound "dr2*8" # up "-5" # n (irand 6) # speed "12" # cut "1" # pan (rand) # room "0.1" # gain ((range 0.75 1.2 $ rand)*two) # crush "1" # orbit 8
+    p "moreDrums3" $ degradeBy 0.1 $ s "lighter*16" # n (irand 33) # gain ((range 0.75 1.3 $ rand)*three) # orbit 8
+morePerc zero one two =
+  do
+    p "morePerc0" $ degradeBy 0.3 $ s "{808bd:0 808sd:7 808bd:2}%16" # room "0.25" # crush (slow 4 (range 2 8 sine)) # gain zero
+    p "morePerc1" $ rotL 1 $ degradeBy 0.35 $ every 8 (fast 2) $ every 4 (# n "30 20 10 6 7 25 11 13") $ s "tabla2*8" # n (run 8) # room "1" # gain ((range 0.85 1 rand)*one)
+    p "morePerc2" $ fast 2 $ s "hh*2 hh*2 hh*2 <hh*6 [hh*2]!3>" # room 0.7 # gain ((range 1 1.2 rand)*two)
