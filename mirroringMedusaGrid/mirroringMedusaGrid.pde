@@ -58,7 +58,7 @@ public void draw() {
         if (x>=9 && x<=12 && y==0){
           led[y][x] = 4 + onOff[y][x]*11;
         }
-        if (x>=9 && x<=11 && y==1){
+        if (x>=9 && x<=14 && y==1){
           led[y][x] = 4 + onOff[y][x]*11;
         }
       }
@@ -371,6 +371,33 @@ public void key(int x, int y, int s) {
       /* send the message */
       oscP5.send(myMessage, tidalCycles);
     }
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more3");
+
+      myMessage.add(0); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more4");
+
+      myMessage.add(0); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more5");
+
+      myMessage.add(0); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
     
     {
       for (int i=0; i<8; i++) {
@@ -423,7 +450,7 @@ public void key(int x, int y, int s) {
     if (x>=9 && x<=12 && y==0){
       onOff[y][x] ^= 1;
     }
-    if (x>=9 && x<=11 && y==1){
+    if (x>=9 && x<=14 && y==1){
       onOff[y][x] ^= 1;
     }
 
@@ -761,6 +788,35 @@ public void key(int x, int y, int s) {
     if (y==1 && x==11) {
       OscMessage myMessage = new OscMessage("/ctrl");
       myMessage.add("more2");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+    if (y==1 && x==12) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more3");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    if (y==1 && x==13) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more4");
+
+      myMessage.add((onOff[y][x])); /* add an int to the osc message */
+
+      /* send the message */
+      oscP5.send(myMessage, tidalCycles);
+    }
+
+    if (y==1 && x==14) {
+      OscMessage myMessage = new OscMessage("/ctrl");
+      myMessage.add("more5");
 
       myMessage.add((onOff[y][x])); /* add an int to the osc message */
 
