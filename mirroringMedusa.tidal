@@ -5,8 +5,7 @@
 -- intro 5 min - gormaduli
 -- protective gear - voice 2 min
 -- turning  voice / drum alateration 2 min
--- mirroring spinal shape build up tension - building into jungle with drums and voice
--- can alterante between low drum and high drum 6 min
+-- mirroring spinal shape build up tension - 6-7 minutes
 
 -- 9 min solos -------
 -- solos first with A section, others come in go to b section with less energy
@@ -148,6 +147,6 @@ moreDrums zero one two three =
     p "moreDrums3" $ degradeBy 0.1 $ s "lighter*16" # n (irand 33) # gain ((range 0.75 1.3 $ rand)*three) # orbit 8
 morePerc zero one two =
   do
-    p "morePerc0" $ degradeBy 0.3 $ s "{808bd:0 808sd:7 808bd:2}%16" # room "0.25" # crush (slow 4 (range 2 8 sine)) # gain zero
+    p "morePerc0" $ degradeBy 0.3 $ s "{808bd:0 808sd:7 808bd:2}%16" # room "0.25" # crush (slow 4 (range 4 8 sine)) # gain zero
     p "morePerc1" $ rotL 1 $ degradeBy 0.35 $ every 8 (fast 2) $ every 4 (# n "30 20 10 6 7 25 11 13") $ s "tabla2*8" # n (run 8) # room "1" # gain ((range 0.85 1 rand)*one)
     p "morePerc2" $ fast 2 $ s "hh*2 hh*2 hh*2 <hh*6 [hh*2]!3>" # room 0.7 # gain ((range 1 1.2 rand)*two)
