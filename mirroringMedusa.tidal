@@ -34,16 +34,19 @@ hush
 
 xfade "vocals0" $ loopAt 2 $ chop 32 $ s "IGLOOGHOST_vocals:18" # delayIn # gain 1 # orbit 0
 
-vocals 0 1 0 1 -- hush volume0 volume1
-iglooBeat 0 0 1 1 -- hush beat0 beat1 beat2
-drums 0 1 1 -- hush lowOctave highOctave
+vocals 0 1 1 0 -- hush volume0 volume1
+iglooBeat 0 1 1 1 -- hush beat0 beat1 beat2
+drums 0 1 0 -- hush lowOctave highOctave
 bigBeat 0 1 2 0.185 -- hush gain slow degrade ***ONLY ONE SOUND***
-glitch 0 1 1 1 -- hush glitch0 glitch1 glitch2
-sophie 0 0 0 0.8 -- hush vol0 vol1 vol2
-chordProg 1 0 0 -- hush prog-0-1-2 restart
-climax 0 1 0 1 0 -- hush vol0 vol1 vol2 restart
-moreDrums 1 0 0 0
-morePerc 1 0 0 0
+glitch 0 0 0 0 -- hush glitch0 glitch1 glitch2
+sophie 0 0 1 0 -- hush vol0 vol1 vol2
+chordProg 0 0 0 -- hush prog-0-1-2 restart
+climax 0 0 0 0 0 -- hush vol0 vol1 vol2 restart
+moreDrums 0 0 0 0
+morePerc 0 0 0 0
+
+thisLove 0.0
+gormaduli
 
 p "vocals1" $ loopAt 4 $ chop 32 $ s "IGLOOGHOST_vocals:18" -- # delayIn  # orbit 0
 
@@ -65,10 +68,14 @@ do {
 
 hush
 
+p "cow1" silence
+p "cow2" silence
+p "cow3" silence
 
-cow1 = loopAt 4 $ chop 32 $ s "44comp:31" # room 0.7 # cloudsDelayIn # pan perlin # gain (1*(cF 0 "gormaduli"))-- # gain perlin
-cow2 = loopAt 8 $ chop 32 $ s "44comp:31" # room 0.7 # pan perlin # gain (1*(cF 0 "gormaduli"))-- # gain perlin
-cow3 = loopAt 16 $ chop 32 $ s "44comp:31" # room 0.7 # gain (1.1*(cF 0 "gormaduli")) -- # gain (perlin2With (cosine*2) (sine*2))
+
+cow1 = loopAt 4 $ chop 32 $ s "44comp:31" # room 0.7 # cloudsDelayIn # pan perlin # gain (1*(cF 0 "gormaduli"))-- 1 -- # gain perlin
+cow2 = loopAt 8 $ chop 32 $ s "44comp:31" # room 0.7 # pan perlin # gain (1*(cF 0 "gormaduli"))--1 -- # gain perlin
+cow3 = loopAt 16 $ chop 32 $ s "44comp:31" # room 0.7 # gain (1.1*(cF 0 "gormaduli")) --1.1 -- # gain (perlin2With (cosine*2) (sine*2))
 cow4 = chop 32 $ loopAt 4 $ sound "44comp:31" # gain (1.2*(cF 0 "gormaduli")) # room 0.9
 gormaduli = do
   p "cow1" $ cow1 # orbit 11
@@ -147,9 +154,9 @@ climax stopAll zero one two restart =
       p "windarp" $ loopAt 8 $ chop 32 $ s "44comp:21" # gain (1.2*zero) # room 0.5 # pan 0 # orbit 7
     if (restart==1)
       then do
-        p "dpoarp" $ qtrigger "dpoarp" $ loopAt 8 $ chop 32 $ s "44comp:6" # gain (0.9*one) # room 0.5 # pan 1 # orbit 7
+        p "dpoarp" $ qtrigger "dpoarp" $ loopAt 8 $ chop 32 $ s "44comp:6" # gain (0.8*one) # room 0.5 # pan 1 # orbit 7
     else do
-      p "dpoarp" $ loopAt 8 $ chop 32 $ s "44comp:6" # gain (0.9*one) # room 0.5 # pan 1 # orbit 7
+      p "dpoarp" $ loopAt 8 $ chop 32 $ s "44comp:6" # gain (0.8*one) # room 0.5 # pan 1 # orbit 7
     if (restart==1)
       then do
         p "melody" $ qtrigger "melody" $ loopAt 32 $ chop 32 $ s "44comp:24" # gain (1.3*two) # room 0.5 # orbit 7
