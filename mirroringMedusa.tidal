@@ -45,8 +45,8 @@ climax 0 0 0 1 0 -- hush vol0 vol1 vol2 restart
 moreDrums 0 0 0 0
 morePerc 0 0 0 0
 
-thisLove 0.0
-gormaduli
+thisLove_medusa 0.0
+gormaduli_medusa
 
 p "vocals1" $ loopAt 4 $ chop 32 $ s "IGLOOGHOST_vocals:18" -- # delayIn  # orbit 0
 
