@@ -41,7 +41,7 @@ bigBeat 0 1 2 0.185 -- hush gain slow degrade ***ONLY ONE SOUND***
 glitch 0 0 0 0 -- hush glitch0 glitch1 glitch2
 sophie 0 0 1 0 -- hush vol0 vol1 vol2
 chordProg 0 0 0 -- hush prog-0-1-2 restart
-climax 0 0 0 0 0 -- hush vol0 vol1 vol2 restart
+climax 0 0 0 1 0 -- hush vol0 vol1 vol2 restart
 moreDrums 0 0 0 0
 morePerc 0 0 0 0
 
