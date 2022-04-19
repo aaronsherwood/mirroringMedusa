@@ -76,11 +76,12 @@ p "cow3" silence
 cow1 = loopAt 4 $ chop 32 $ s "44comp:31" # room 0.7 # cloudsDelayIn # pan perlin # gain (1*(cF 0 "gormaduli"))-- 1 -- # gain perlin
 cow2 = loopAt 8 $ chop 32 $ s "44comp:31" # room 0.7 # pan perlin # gain (1*(cF 0 "gormaduli"))--1 -- # gain perlin
 cow3 = loopAt 16 $ chop 32 $ s "44comp:31" # room 0.7 # gain (1.1*(cF 0 "gormaduli")) --1.1 -- # gain (perlin2With (cosine*2) (sine*2))
-cow4 = chop 32 $ loopAt 4 $ sound "44comp:31" # gain (1.2*(cF 0 "gormaduli")) # room 0.9
+-- cow4 = chop 32 $ loopAt 4 $ sound "44comp:31" # gain (1.2*(cF 0 "gormaduli")) # room 0.9
 gormaduli = do
   p "cow1" $ cow1 # orbit 11
   p "cow2" $ cow2 # orbit 11
   p "cow3" $ cow3 # orbit 11
+  -- p "cow4" $ cow4 # orbit 11
 thisLove zero = do
   xfadeIn "thisLove0" 8 $ jux (rev) $ slow 8 $ striate' 64 (1/4) $ sound "44comp:36" # room "0.9" # size "0.9" # speed "1" # slow 4 ( gain (zero) ) # up "-4" # orbit 10 -- # up "5"-- # slow 4 ( crush (range 2 32 rand) )
   xfadeIn "thisLove1" 8 $ jux (rev) $ slow 8 $ striate' 64 (1/4) $ sound "44comp:36"  # room "0.9" # size "0.9" # speed "-2" # slow 4 ( gain ( zero) ) # up "-4" # orbit 10  -- # up "5"
