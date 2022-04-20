@@ -48,6 +48,12 @@ morePerc 0 0 0 0
 thisLove_medusa 0.0
 gormaduli_medusa
 
+blackRain
+sunshine "xfade"
+paulineOliveros = xfade "pauline oliveros" $ loopAt 16 $ chop 512 $ s "44comp:26" # room 0.7 # speed 0.95 # orbit 12
+paulineOliveros
+xfade "pauline oliveros" silence
+
 p "vocals1" $ loopAt 4 $ chop 32 $ s "IGLOOGHOST_vocals:18" -- # delayIn  # orbit 0
 
 do {
